@@ -4,15 +4,13 @@ import 'package:listatarefasapp/interceptors/back4app_dio_interceptor.dart';
 import 'package:listatarefasapp/models/dados_tarefa_back4app_model.dart';
 
 class CrudTarefaBack4AppRepository {
-
   var _dio = Dio();
 
-  CrudTarefaBack4AppRepository(){
+  CrudTarefaBack4AppRepository() {
     _dio = Dio();
     _dio.options.headers["Content-Type"] = "application/json";
     _dio.options.baseUrl = dotenv.get("BACK4APP_BASEURL");
     _dio.interceptors.add(Back4AppDioInterceptor());
-
   }
 
   Future<ResultadosTarefasBack4AppModel> obterTarefa() async {
@@ -27,33 +25,33 @@ class CrudTarefaBack4AppRepository {
     return ResultadosTarefasBack4AppModel.fromJson(result.data);
   }
 
-  Future<void> criarTarefa(ResultadoTarefaBack4AppModel dadoTarefaBack4AppModel) async {
-    try{
-      await _dio.post("/Tarefas", data: dadoTarefaBack4AppModel.toJsonEndpoint() );
-    }catch(e){
+  Future<void> criarTarefa(
+      ResultadoTarefaBack4AppModel dadoTarefaBack4AppModel) async {
+    try {
+      await _dio.post("/Tarefas",
+          data: dadoTarefaBack4AppModel.toJsonEndpoint());
+    } catch (e) {
       throw e;
     }
   }
 
-  Future<void> atualizarTarefa(ResultadoTarefaBack4AppModel dadoCepBack4AppModel) async {
-    
+  Future<void> atualizarTarefa(
+      ResultadoTarefaBack4AppModel dadoCepBack4AppModel) async {
     print(dadoCepBack4AppModel.objectId.toString());
-    
-    try{
-      await _dio.put("/Tarefas/"+dadoCepBack4AppModel.objectId.toString(), 
-      data: dadoCepBack4AppModel.toJsonEndpoint() );
-    }catch(e){
+
+    try {
+      await _dio.put("/Tarefas/" + dadoCepBack4AppModel.objectId.toString(),
+          data: dadoCepBack4AppModel.toJsonEndpoint());
+    } catch (e) {
       throw e;
     }
   }
-
 
   Future<void> removerContato(String objectId) async {
-    try{
+    try {
       await _dio.delete("/Tarefas/$objectId");
-    }catch(e){
+    } catch (e) {
       throw e;
     }
   }
-
 }

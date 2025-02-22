@@ -34,6 +34,16 @@ mixin _$ListaTarefaMobXStore on _ListaTarefaMobXStore, Store {
     });
   }
 
+  late final _$carregarTarefasDoBancoAsyncAction = AsyncAction(
+      '_ListaTarefaMobXStore.carregarTarefasDoBanco',
+      context: context);
+
+  @override
+  Future<void> carregarTarefasDoBanco() {
+    return _$carregarTarefasDoBancoAsyncAction
+        .run(() => super.carregarTarefasDoBanco());
+  }
+
   late final _$_ListaTarefaMobXStoreActionController =
       ActionController(name: '_ListaTarefaMobXStore', context: context);
 

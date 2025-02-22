@@ -3,7 +3,6 @@ class ResultadosTarefasBack4AppModel {
 
   ResultadosTarefasBack4AppModel(this.resultados);
 
-
   ResultadosTarefasBack4AppModel.fromJson(Map<String, dynamic> json) {
     if (json['results'] != null) {
       resultados = <ResultadoTarefaBack4AppModel>[];
@@ -34,11 +33,10 @@ class ResultadoTarefaBack4AppModel {
       this.createdAt,
       this.updatedAt});
 
-  ResultadoTarefaBack4AppModel.criar(
-      this.descricao, this.concluido);
+  ResultadoTarefaBack4AppModel.criar(this.descricao, this.concluido);
 
-  ResultadoTarefaBack4AppModel.modificar(this.objectId, this.descricao,
-      this.concluido);
+  ResultadoTarefaBack4AppModel.modificar(
+      this.objectId, this.descricao, this.concluido);
 
   ResultadoTarefaBack4AppModel.fromJson(Map<String, dynamic> json) {
     objectId = json['objectId'];

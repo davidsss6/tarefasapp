@@ -1,5 +1,3 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 
 // Include generated file
@@ -9,7 +7,6 @@ part 'tarefa_model_mobx.g.dart';
 class TarefaModelMobXStore = _TarefaModelMobXStore with _$TarefaModelMobXStore;
 
 abstract class _TarefaModelMobXStore with Store {
- 
   @observable
   String? id;
 
@@ -22,10 +19,9 @@ abstract class _TarefaModelMobXStore with Store {
   _TarefaModelMobXStore({this.descricao, this.concluido, this.id});
 
   @action
-  alterar (String pDescricao, bool pConcluido, String pId) {
+  alterar(String pDescricao, bool pConcluido, String pId) {
     descricao = pDescricao;
     concluido = pConcluido;
     id = pId;
   }
-
 }

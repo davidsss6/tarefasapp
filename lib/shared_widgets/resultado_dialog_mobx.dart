@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:listatarefasapp/models/lista_tarefa_mobx_store.dart';
 
 class ResultadoDialogMobx {
   ResultadoDialogMobx();
 
-
   String resultadoErroBuscaCep =
       "Voce precisa preencher o campo corretamente!\n\n Dicas:\n\n- Nao deixe o campo em branco.";
 
   void mostrarAlertDialog(
-  ListaTarefaMobXStore listaTarefaMobXStore,
-  BuildContext context,
-  String objectId,
-  String tarefa,
-  bool concluida,
-  bool editavel, {
-  required VoidCallback onOkPressed,
-}) {
+    ListaTarefaMobXStore listaTarefaMobXStore,
+    BuildContext context,
+    String objectId,
+    String tarefa,
+    bool concluida,
+    bool editavel, {
+    required VoidCallback onOkPressed,
+  }) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        TextEditingController tarefaController =
+            TextEditingController(text: tarefa);
+        bool switchValue = concluida;
 
-  showDialog(
-    context: context,
-    builder: (context) {
-      TextEditingController tarefaController = TextEditingController(text: tarefa);
-      bool switchValue = concluida;
-
-      return StatefulBuilder(
+        return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
               title: Text(editavel ? "Editar Tarefa" : "Nova Tarefa"),
@@ -61,9 +59,11 @@ class ResultadoDialogMobx {
                 TextButton(
                   onPressed: () {
                     if (editavel) {
-                      listaTarefaMobXStore.alterar(objectId, tarefaController.text, switchValue);
+                      listaTarefaMobXStore.alterar(
+                          objectId, tarefaController.text, switchValue);
                     } else {
-                      listaTarefaMobXStore.adicionar(tarefaController.text, concluida, objectId);
+                      listaTarefaMobXStore.adicionar(
+                          tarefaController.text, concluida, objectId);
                     }
                     Navigator.of(context).pop();
                     onOkPressed();
@@ -74,10 +74,9 @@ class ResultadoDialogMobx {
             );
           },
         );
-    },
-  );
-}
-
+      },
+    );
+  }
 
   void mostrarAlertDialogErro(BuildContext context, String mensagem) {
     showDialog(
